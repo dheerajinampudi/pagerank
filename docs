@@ -1,0 +1,43 @@
+	public void calc(double n) //for calculating the pagerank iterations no return type
+	{    
+	 double init; // 
+	 double c=0; 
+	 double df = 0.85;
+	 double temp[] = new double[10];
+	 int i,j,u=1,k=1;
+	 init = 1/n;
+	 System.out.printf(" n value:"+n+"\t init value :"+init+"\n");
+	 for(i=1;i<=n;i++)
+	   this.pagerank1[i]=init;// referring the current object position with "this"
+	   System.out.printf("\n Initial PageRank Values , 0th Step \n");
+	    for(i=1;i<=n;i++)
+	   System.out.printf(" Page Rank of "+i+" is :\t"+this.pagerank1[i]+"\n");
+	   
+	   
+	   while(u<=16)// number iteration
+	   {
+	    for(i=1;i<=n;i++)
+	    {  temp[i]=this.pagerank1[i];
+	          this.pagerank1[i]=0;
+	       }
+	     
+	 for(j=1;j<=n;j++)
+	        for(i=1;i<=n;i++)
+	     if(this.path[i][j] == 1)
+	     {  k=1;c=0; 
+	           while(k<=n)
+	     {
+	       if(this.path[i][k] == 1 )
+	                   c=c+1;
+	     k=k+1;
+	     } 
+	             this.pagerank1[j]=this.pagerank1[j]+temp[i]*(1/c);    
+	      } 
+	   
+	  System.out.printf("\n After "+u+"th Step \n"); 
+	     for(i=1;i<=n;i++) 
+	      System.out.printf(" Page Rank of "+i+" is :\t"+this.pagerank1[i]+"\n"); 
+	   
+	     u=u+1;
+	    } 
+	}
